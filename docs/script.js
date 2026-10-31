@@ -14,7 +14,7 @@
    1. CONFIG — modifie juste ces valeurs pour connecter tes vrais comptes
 -------------------------------------------------------------------------- */
 const CONFIG = {
-  githubUsername: "Kola-Code", // ex: "kola" — laisse vide pour garder les cartes statiques du HTML
+  githubUsername: "KolaEXE", // ex: "kola" — laisse vide pour garder les cartes statiques du HTML
   githubRepoLimit: 6,
 };
 
