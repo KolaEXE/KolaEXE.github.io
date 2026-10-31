@@ -828,14 +828,14 @@ ul{ margin: 0; padding: 0; list-style: none; }
 
 @font-face {
     font-family: "Bestime";
-    src: url("../Assets/fonts/Bestime.ttf") format("truetype");
+    src: url("../Assets/Fonts/Bestime.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Omnes";
-    src: url("../Assets/fonts/Omnes-Black.ttf") format("truetype");
+    src: url("../Assets/Fonts/Omnes-Black.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
