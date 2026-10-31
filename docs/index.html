@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kōla × Hub</title>
+<meta name="description" content="KOLA — hub créatif : jeux, expérimentations, devlogs et projets d'un développeur / artiste digital indépendant.">
+
+<link rel="icon" href="/Assets/ICO/icon.ico"">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Space+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======================================================
+     NAV BAR
+====================================================== -->
+<header class="site-header" id="site-header">
+  <div class="nav-wrap">
+    <a href="#top" class="nav-logo" aria-label="KOLA — retour en haut">
+      <!--<span class="nav-logo-mark">K</span>-->
+      <span class="nav-logo-text">Kōla コーラ</span>
+      <!--<img src="/Assets/Kola.png" width="100" height="100">-->
+    </a>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="#about" class="nav-link">À propos</a>
+      <a href="#projects" class="nav-link">Projets</a>
+      <a href="#devlog" class="nav-link">Devlog</a>
+      <a href="#github" class="nav-link">GitHub</a>
+      <a href="#videos" class="nav-link">Vidéos</a>
+      <a href="#links" class="nav-link">Réseaux</a>
+      <a href="#contact" class="nav-link nav-link--cta">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Basculer entre le mode jour et nuit" title="Mode jour / nuit">
+        <span class="theme-toggle-icon" aria-hidden="true"><i class="ph ph-moon-stars"></i></span>
+      </button>
+      <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+    <!-- Divider : dents de scie -->
+  <div class="divider divider--zigzag divider-bg-alt" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
+      <path class="divider-fill-base" d="M0,40 L60,0 L120,40 L180,0 L240,40 L300,0 L360,40 L420,0 L480,40 L540,0 L600,40 L660,0 L720,40 L780,0 L840,40 L900,0 L960,40 L1020,0 L1080,40 L1140,0 L1200,40 Z"/>
+    </svg>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ======================================================
+       1. HERO
+  ====================================================== -->
+  <section class="hero" id="hero">
+    <!--<div class="hero-blob hero-blob--yellow" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob--lavender" aria-hidden="true"></div>-->
+
+    <div class="hero-inner">
+      <p class="eyebrow eyebrow--light reveal">// BIENVENUE DANS MON ATELIER</p>
+
+      <h1 class="hero-title reveal">
+        <span class="hero-title-line">Kōla <br>コーラ</span>
+      </h1>
+
+      <p class="hero-subtitle reveal">Creative Developer · Game Creator · Digital Artist</p>
+
+      <p class="hero-text reveal">
+        Je conçois des jeux, des expériences visuelles et des petits mondes pixelisés.
+        Ce site est mon atelier public — mes projets, mes idées en cours, et tout ce que je bricole entre deux commits.
+      </p>
+
+      <div class="hero-actions reveal">
+        <a href="#projects" class="btn btn--primary">Voir mes projets</a>
+        <a href="#links" class="btn btn--ghost">Mes réseaux</a>
+      </div>
+
+      <a href="#about" class="scroll-cue" aria-label="Défiler vers le bas">
+        <span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       2. À PROPOS
+  ====================================================== -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <p class="eyebrow reveal">// À PROPOS</p>
+      <h2 class="section-title reveal">Qui est Kōla ?</h2>
+      <p class="section-lead reveal">
+        Je suis un développeur et artiste indépendant, quelque part entre le pixel art et le code créatif.
+        J'aime construire des petits mondes jouables, du prototype rapide au projet qui prend vie sur plusieurs mois.
+        Ici, je documente mes jeux, mes expérimentations visuelles et tout ce que j'apprends en chemin.
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill-card skill-card--violet reveal">
+          <span class="skill-icon" aria-hidden="true">🎮</span>
+          <span class="skill-name">Game Development</span>
+        </div>
+        <div class="skill-card skill-card--yellow reveal">
+          <span class="skill-icon" aria-hidden="true">⚙️</span>
+          <span class="skill-name">Unity</span>
+        </div>
+        <div class="skill-card skill-card--violet reveal">
+          <span class="skill-icon" aria-hidden="true">🧱</span>
+          <span class="skill-name">Pixel Art</span>
+        </div>
+        <div class="skill-card skill-card--yellow reveal">
+          <span class="skill-icon" aria-hidden="true">🖥️</span>
+          <span class="skill-name">Web Design</span>
+        </div>
+        <div class="skill-card skill-card--violet reveal">
+          <span class="skill-icon" aria-hidden="true">✨</span>
+          <span class="skill-name">Creative Coding</span>
+        </div>
+        <div class="skill-card skill-card--yellow reveal">
+          <span class="skill-icon" aria-hidden="true">🎨</span>
+          <span class="skill-name">Digital Creation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       3. PROJETS
+       ⤷ Pour ajouter un projet : duplique un .project-card
+       et modifie le contenu (titre, description, tags, liens).
+  ====================================================== -->
+  <section class="section projects" id="projects">
+    <div class="section-inner">
+      <p class="eyebrow reveal">// PROJETS</p>
+      <h2 class="section-title reveal">Ce que je construis</h2>
+      <p class="section-lead reveal">Une sélection de jeux et d'expériences, du prototype au projet publié.</p>
+
+      <div class="projects-grid">
+
+        <article class="project-card reveal">
+          <div class="project-media project-media--1" aria-hidden="true">
+            <span class="project-media-tag">Unity 2D</span>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge badge--category">Farming / Management</span>
+              <span class="badge badge--status badge--status-dev">En développement</span>
+            </div>
+            <h3 class="project-title">From Soil</h3>
+            <p class="project-desc">Un jeu de gestion de ferme où chaque parcelle raconte une petite histoire. Cycle de saisons, artisanat et village à faire grandir.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Unity</span>
+              <span class="tech-tag">C#</span>
+              <span class="tech-tag">Pixel Art</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn--small btn--primary">Voir le projet</a>
+              <a href="#" class="icon-link" aria-label="Dépôt GitHub de From Soil">GitHub ↗</a>
+              <a href="#" class="icon-link" aria-label="Vidéo de From Soil">Vidéo ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-media project-media--2" aria-hidden="true">
+            <span class="project-media-tag">Arcade</span>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge badge--category">Plateforme 2D</span>
+              <span class="badge badge--status badge--status-live">Disponible</span>
+            </div>
+            <h3 class="project-title">Nocturne Byte</h3>
+            <p class="project-desc">Un plateformer nerveux en pixel art, inspiré des cartouches 16-bit, avec un système de niveaux générés à la volée.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Godot</span>
+              <span class="tech-tag">GDScript</span>
+              <span class="tech-tag">Chiptune</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn--small btn--primary">Voir le projet</a>
+              <a href="#" class="icon-link" aria-label="Dépôt GitHub de Nocturne Byte">GitHub ↗</a>
+              <a href="#" class="icon-link" aria-label="Vidéo de Nocturne Byte">Vidéo ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-media project-media--3" aria-hidden="true">
+            <span class="project-media-tag">Creative Coding</span>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge badge--category">Art génératif</span>
+              <span class="badge badge--status badge--status-exp">Expérimental</span>
+            </div>
+            <h3 class="project-title">Glitch Garden</h3>
+            <p class="project-desc">Un jardin génératif qui pousse différemment à chaque visite, entre bruit de Perlin et palette rétro violet / jaune.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Canvas</span>
+              <span class="tech-tag">Shaders</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn--small btn--primary">Voir le projet</a>
+              <a href="#" class="icon-link" aria-label="Dépôt GitHub de Glitch Garden">GitHub ↗</a>
+              <a href="#" class="icon-link" aria-label="Vidéo de Glitch Garden">Vidéo ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-media project-media--4" aria-hidden="true">
+            <span class="project-media-tag">Outil</span>
+          </div>
+          <div class="project-body">
+            <div class="project-badges">
+              <span class="badge badge--category">Devlog Toolkit</span>
+              <span class="badge badge--status badge--status-pause">En pause</span>
+            </div>
+            <h3 class="project-title">Pixel Playground</h3>
+            <p class="project-desc">Un petit éditeur de sprites maison pensé pour prototyper vite, avec export direct vers Unity et Godot.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Electron</span>
+              <span class="tech-tag">TypeScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn--small btn--primary">Voir le projet</a>
+              <a href="#" class="icon-link" aria-label="Dépôt GitHub de Pixel Playground">GitHub ↗</a>
+              <a href="#" class="icon-link" aria-label="Vidéo de Pixel Playground">Vidéo ↗</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       4. DEVLOG / ACTUALITÉS
+       ⤷ Pour ajouter un post : duplique un .devlog-card
+  ====================================================== -->
+  <section class="section devlog" id="devlog">
+    <div class="section-inner">
+      <p class="eyebrow reveal">// DEVLOG & ACTUS</p>
+      <h2 class="section-title reveal">Dernières nouvelles</h2>
+      <p class="section-lead reveal">Avancées, versions et petites victoires — mises à jour au fil de l'eau.</p>
+
+      <div class="devlog-list">
+
+        <article class="devlog-card reveal">
+          <div class="devlog-thumb devlog-thumb--1" aria-hidden="true"></div>
+          <div class="devlog-content">
+            <span class="devlog-date">03 Août 2026</span>
+            <h3 class="devlog-title">From Soil — le cycle des saisons est en place</h3>
+            <p class="devlog-summary">L'hiver ralentit les cultures, l'été les accélère. Ajout du système météo et des premiers effets visuels de saison.</p>
+            <a href="#" class="text-link">Lire plus →</a>
+          </div>
+        </article>
+
+        <article class="devlog-card reveal">
+          <div class="devlog-thumb devlog-thumb--2" aria-hidden="true"></div>
+          <div class="devlog-content">
+            <span class="devlog-date">21 Juillet 2026</span>
+            <h3 class="devlog-title">Nocturne Byte v1.2 — nouveaux niveaux</h3>
+            <p class="devlog-summary">Six niveaux supplémentaires, un boss caché, et un patch d'équilibrage sur la vitesse de course.</p>
+            <a href="#" class="text-link">Lire plus →</a>
+          </div>
+        </article>
+
+        <article class="devlog-card reveal">
+          <div class="devlog-thumb devlog-thumb--3" aria-hidden="true"></div>
+          <div class="devlog-content">
+            <span class="devlog-date">02 Juillet 2026</span>
+            <h3 class="devlog-title">Glitch Garden passe en public</h3>
+            <p class="devlog-summary">L'expérience générative est maintenant ouverte à tous. Merci à celles et ceux qui ont testé la version privée !</p>
+            <a href="#" class="text-link">Lire plus →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       5. GITHUB / DÉVELOPPEMENT
+       ⤷ Change GITHUB_USERNAME dans script.js pour afficher
+       automatiquement tes vrais dépôts publics.
+  ====================================================== -->
+  <section class="section github-section" id="github">
+    <div class="section-inner">
+      <p class="eyebrow eyebrow--light reveal">// MON ACTIVITÉ</p>
+      <h2 class="section-title section-title--light reveal">Sur GitHub</h2>
+      <p class="section-lead section-lead--light reveal">Ce qui se passe côté code — dépôts, derniers commits, technos du moment.</p>
+
+      <div class="github-stats reveal">
+        <div class="stat-card">
+          <span class="stat-value" id="stat-repos">12</span>
+          <span class="stat-label">Dépôts publics</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-commits">640+</span>
+          <span class="stat-label">Commits cette année</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-stars">38</span>
+          <span class="stat-label">Étoiles reçues</span>
+        </div>
+      </div>
+
+      <!-- Ce conteneur est rempli par script.js (fallback statique inclus) -->
+      <div class="repo-grid" id="repo-grid">
+        <a href="#" class="repo-card">
+          <span class="repo-name">from-soil</span>
+          <span class="repo-desc">Jeu de gestion de ferme en Unity 2D.</span>
+          <span class="repo-meta"><span class="repo-lang"><i class="lang-dot lang-dot--csharp"></i>C#</span><span>★ 24</span></span>
+        </a>
+        <a href="#" class="repo-card">
+          <span class="repo-name">nocturne-byte</span>
+          <span class="repo-desc">Plateformer pixel art sur Godot.</span>
+          <span class="repo-meta"><span class="repo-lang"><i class="lang-dot lang-dot--gd"></i>GDScript</span><span>★ 9</span></span>
+        </a>
+        <a href="#" class="repo-card">
+          <span class="repo-name">glitch-garden</span>
+          <span class="repo-desc">Art génératif en Canvas / JS.</span>
+          <span class="repo-meta"><span class="repo-lang"><i class="lang-dot lang-dot--js"></i>JavaScript</span><span>★ 5</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       6. VIDÉOS
+  ====================================================== -->
+  <section class="section videos" id="videos">
+    <div class="section-inner">
+      <p class="eyebrow reveal">// VIDÉOS</p>
+      <h2 class="section-title reveal">Showcases &amp; devlogs</h2>
+      <p class="section-lead reveal">Trailers, journaux de développement et démonstrations en vidéo.</p>
+
+      <div class="videos-grid">
+        <a href="#" class="video-card reveal">
+          <div class="video-thumb video-thumb--1">
+            <span class="video-play" aria-hidden="true">▶</span>
+            <span class="video-duration">3:42</span>
+          </div>
+          <h3 class="video-title">From Soil — Trailer d'annonce</h3>
+          <span class="video-meta">Trailer · Juin 2026</span>
+        </a>
+        <a href="#" class="video-card reveal">
+          <div class="video-thumb video-thumb--2">
+            <span class="video-play" aria-hidden="true">▶</span>
+            <span class="video-duration">11:05</span>
+          </div>
+          <h3 class="video-title">Devlog #4 — construire le cycle des saisons</h3>
+          <span class="video-meta">Devlog · Août 2026</span>
+        </a>
+        <a href="#" class="video-card reveal">
+          <div class="video-thumb video-thumb--3">
+            <span class="video-play" aria-hidden="true">▶</span>
+            <span class="video-duration">6:18</span>
+          </div>
+          <h3 class="video-title">Nocturne Byte — Speedrun des premiers niveaux</h3>
+          <span class="video-meta">Showcase · Juillet 2026</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       7. LIENS / RÉSEAUX
+  ====================================================== -->
+  <section class="section links" id="links">
+    <div class="section-inner">
+      <p class="eyebrow reveal">// RETROUVE-MOI</p>
+      <h2 class="section-title reveal">Mes réseaux</h2>
+      <p class="section-lead reveal">Tout se passe ici — le code, les visuels, les mises à jour au jour le jour.</p>
+
+      <div class="links-grid">
+        <a href="#" class="link-card link-card--violet reveal">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.94c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.58 2.34 1.12 2.91.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.15-4.56-5.11 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.32.1-2.75 0 0 .84-.28 2.75 1.06a9.3 9.3 0 0 1 5 0c1.9-1.34 2.74-1.06 2.74-1.06.56 1.43.2 2.49.1 2.75.65.72 1.03 1.64 1.03 2.77 0 3.97-2.34 4.84-4.57 5.1.36.32.68.94.68 1.9v2.82c0 .28.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          </span>
+          <span class="link-name">GitHub</span>
+          <span class="link-handle">@kola</span>
+        </a>
+        <a href="#" class="link-card link-card--yellow reveal">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M21.6 7.2s-.21-1.5-.87-2.16c-.83-.87-1.76-.87-2.18-.92C15.6 4 12 4 12 4h-.01s-3.6 0-6.55.12c-.42.05-1.35.05-2.18.92-.66.66-.87 2.16-.87 2.16S2.16 9 2.16 10.8v1.68c0 1.8.23 3.6.23 3.6s.21 1.5.86 2.16c.83.87 1.92.84 2.4.93 1.75.17 7.35.22 7.35.22s3.6-.01 6.55-.13c.42-.05 1.35-.05 2.18-.92.66-.66.87-2.16.87-2.16s.24-1.8.24-3.6V10.8c0-1.8-.24-3.6-.24-3.6ZM9.96 14.9V8.7l5.75 3.1-5.75 3.1Z"/></svg>
+          </span>
+          <span class="link-name">YouTube</span>
+          <span class="link-handle">@kola.studio</span>
+        </a>
+        <a href="#" class="link-card link-card--violet reveal">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M18.9 2h3.1l-6.77 7.74L23 22h-6.24l-4.88-6.4L6.3 22H3.2l7.24-8.28L2 2h6.4l4.42 5.85L18.9 2Zm-1.09 18h1.71L7.28 3.9H5.45L17.81 20Z"/></svg>
+          </span>
+          <span class="link-name">Twitter / X</span>
+          <span class="link-handle">@kola_dev</span>
+        </a>
+        <a href="#" class="link-card link-card--yellow reveal">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M20.32 5.37a17.5 17.5 0 0 0-4.32-1.34l-.22.39a15.9 15.9 0 0 1 3.83 1.5 16.6 16.6 0 0 0-15.22 0 15.9 15.9 0 0 1 3.83-1.5l-.22-.39A17.5 17.5 0 0 0 3.68 5.37 18.3 18.3 0 0 0 1 17.5a17.7 17.7 0 0 0 5.38 2.72l.55-.9a11.5 11.5 0 0 1-1.83-.87c.15-.11.3-.23.44-.34a12.7 12.7 0 0 0 10.92 0c.15.12.29.23.44.34-.58.34-1.2.63-1.83.87l.55.9A17.7 17.7 0 0 0 21 17.5a18.3 18.3 0 0 0-.68-12.13ZM9 14.6c-.9 0-1.63-.83-1.63-1.85S8.1 10.9 9 10.9s1.65.85 1.63 1.85c0 1.02-.73 1.85-1.63 1.85Zm6.02 0c-.9 0-1.63-.83-1.63-1.85s.72-1.85 1.63-1.85 1.64.85 1.62 1.85c0 1.02-.72 1.85-1.62 1.85Z"/></svg>
+          </span>
+          <span class="link-name">Discord</span>
+          <span class="link-handle">Rejoindre le serveur</span>
+        </a>
+        <a href="#" class="link-card link-card--violet reveal">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.8c-3.14 0-3.5.01-4.74.07-.96.04-1.48.2-1.83.34-.46.18-.78.39-1.13.73-.34.35-.55.67-.73 1.13-.14.35-.3.87-.34 1.83-.06 1.24-.07 1.6-.07 4.74s.01 3.5.07 4.74c.04.96.2 1.48.34 1.83.18.46.39.78.73 1.13.35.34.67.55 1.13.73.35.14.87.3 1.83.34 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.96-.04 1.48-.2 1.83-.34.46-.18.78-.39 1.13-.73.34-.35.55-.67.73-1.13.14-.35.3-.87.34-1.83.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.96-.2-1.48-.34-1.83a3.02 3.02 0 0 0-.73-1.13 3.02 3.02 0 0 0-1.13-.73c-.35-.14-.87-.3-1.83-.34-1.24-.06-1.6-.07-4.74-.07Zm0 3.06a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Zm5.2-1.98a1.17 1.17 0 1 1-2.33 0 1.17 1.17 0 0 1 2.33 0Z"/></svg>
+          </span>
+          <span class="link-name">Instagram</span>
+          <span class="link-handle">@kola.creates</span>
+        </a>
+        <a href="#" class="link-card link-card--yellow reveal">
+          <span class="link-icon" aria-hidden="true">✉️</span>
+          <span class="link-name">Newsletter</span>
+          <span class="link-handle">Recevoir les devlogs</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       8. CONTACT
+  ====================================================== -->
+  <section class="section contact" id="contact">
+    <div class="section-inner">
+      <p class="eyebrow reveal">// CONTACT</p>
+      <h2 class="section-title reveal">Discutons</h2>
+      <p class="section-lead reveal">Une idée de collaboration, une question sur un projet, ou juste envie de dire bonjour ?</p>
+
+      <div class="contact-grid">
+        <form class="contact-form reveal" id="contact-form">
+          <label class="field">
+            <span class="field-label">Nom</span>
+            <input type="text" name="name" placeholder="Ton nom" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Email</span>
+            <input type="email" name="email" placeholder="ton@email.com" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Message</span>
+            <textarea name="message" rows="5" placeholder="Raconte-moi tout..." required></textarea>
+          </label>
+          <button type="submit" class="btn btn--primary btn--full">Envoyer le message</button>
+          <p class="form-note" id="form-note" role="status"></p>
+        </form>
+
+        <div class="contact-card reveal">
+          <h3 class="contact-card-title">Mail Pro</h3>
+          <a href="mailto:KolaCodePro@gmail.com" class="contact-email">KolaCodePro@gmail.com</a>
+          <p class="contact-note">Je réponds en général sous 2 à 3 jours. Pour les mises à jour au quotidien, mes réseaux restent le plus rapide.</p>
+          <div class="contact-mini-links">
+            <a href="#links" class="chip">GitHub</a>
+            <a href="#links" class="chip">Discord</a>
+            <a href="#links" class="chip">Twitter / X</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="#top" class="footer-logo">
+        <span class="footer-logo-text">KOLA <span class="footer-logo-x">╳</span>コーラ</span>
+      </a>
+      <nav class="footer-nav">
+        <a href="#about">À propos</a>
+        <a href="#projects">Projets</a>
+        <a href="#devlog">Devlog</a>
+        <a href="#github">GitHub</a>
+        <a href="#videos">Vidéos</a>
+        <a href="#links">Réseaux</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy"><!--KOLA ⓒ 2026 • fabriqué à la main, pixel par pixel.--></p>
+      <div class="footer-socials">
+        <a href="#" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+        <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+        <a href="#" aria-label="Twitter / X"><i class="ph ph-x-logo"></i></a>
+        <a href="#" aria-label="Discord"><i class="ph ph-discord-logo"></i></a>
+        <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
