@@ -23,6 +23,115 @@ const CONFIG = {
 -------------------------------------------------------------------------- */
 const navBurger = document.getElementById("nav-burger");
 const navLinks = document.getElementById("nav-links");
+const pageToc = document.getElementById("page-toc");
+
+if (pageToc) {
+  const updatePageToc = () => {
+    const isVisible = window.scrollY > 24;
+    pageToc.classList.toggle("is-visible", isVisible);
+    pageToc.setAttribute("aria-hidden", String(!isVisible));
+  };
+
+  updatePageToc();
+  window.addEventListener("scroll", updatePageToc, { passive: true });
+
+  const tocLinks = pageToc.querySelectorAll(".page-toc-link");
+  const tocInner = pageToc.querySelector(".page-toc-inner");
+  const tocSections = Array.from(tocLinks)
+    .map((link) => document.querySelector(link.hash))
+    .filter(Boolean);
+  const tocIndicator = document.createElement("span");
+  tocIndicator.className = "page-toc-indicator";
+  tocIndicator.setAttribute("aria-hidden", "true");
+  if (tocInner) tocInner.prepend(tocIndicator);
+
+  const setActiveTocLink = (activeLink) => {
+    tocLinks.forEach((link) => {
+      const isCurrent = link === activeLink;
+      link.classList.toggle("is-active", isCurrent);
+      if (isCurrent) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+
+    if (!tocInner || !activeLink) return;
+    tocIndicator.style.setProperty("--toc-indicator-x", `${activeLink.offsetLeft}px`);
+    tocIndicator.style.setProperty("--toc-indicator-width", `${activeLink.offsetWidth}px`);
+    tocIndicator.classList.add("is-ready");
+  };
+
+  let tocScrollFrame = 0;
+  let pendingTocLink = null;
+  let tocScrollEndTimer = 0;
+  const updateActiveTocLink = () => {
+    tocScrollFrame = 0;
+    if (pendingTocLink) return;
+
+    const headerHeight = document.getElementById("site-header")?.offsetHeight || 0;
+    const activationLine = window.scrollY + headerHeight + pageToc.offsetHeight + 24;
+    let activeSection = null;
+
+    tocSections.forEach((section) => {
+      if (section.getBoundingClientRect().top + window.scrollY <= activationLine) {
+        activeSection = section;
+      }
+    });
+
+    if (activeSection) {
+      const activeLink = Array.from(tocLinks).find((link) => link.hash === `#${activeSection.id}`);
+      if (activeLink) setActiveTocLink(activeLink);
+    }
+  };
+  const scheduleActiveTocUpdate = () => {
+    if (tocScrollFrame) return;
+    tocScrollFrame = window.requestAnimationFrame(updateActiveTocLink);
+  };
+  const finishTocScroll = () => {
+    if (!pendingTocLink) return;
+    pendingTocLink = null;
+    window.clearTimeout(tocScrollEndTimer);
+    scheduleActiveTocUpdate();
+  };
+
+  tocLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const target = document.querySelector(link.hash);
+      if (!target) return;
+
+      event.preventDefault();
+      pendingTocLink = link;
+      window.clearTimeout(tocScrollEndTimer);
+      setActiveTocLink(link);
+      if (window.location.hash !== link.hash) {
+        window.history.pushState(null, "", link.hash);
+      }
+
+      const headerHeight = document.getElementById("site-header")?.offsetHeight || 0;
+      const targetY = Math.max(
+        0,
+        target.getBoundingClientRect().top + window.scrollY - headerHeight - pageToc.offsetHeight
+      );
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: targetY, behavior: prefersReducedMotion ? "auto" : "smooth" });
+      if (prefersReducedMotion || Math.abs(window.scrollY - targetY) < 2) {
+        finishTocScroll();
+      }
+    });
+  });
+  window.addEventListener("scroll", () => {
+    scheduleActiveTocUpdate();
+    if (pendingTocLink) {
+      window.clearTimeout(tocScrollEndTimer);
+      tocScrollEndTimer = window.setTimeout(finishTocScroll, 180);
+    }
+  }, { passive: true });
+  window.addEventListener("scrollend", finishTocScroll);
+  window.addEventListener("resize", () => {
+    const activeLink = pageToc.querySelector(".page-toc-link.is-active");
+    if (activeLink) setActiveTocLink(activeLink);
+    scheduleActiveTocUpdate();
+  });
+  scheduleActiveTocUpdate();
+}
 
 if (navBurger && navLinks) {
   navBurger.addEventListener("click", () => {
@@ -166,19 +275,3 @@ async function loadGithubActivity() {
 }
 
 loadGithubActivity();
-
-/* --------------------------------------------------------------------------
-   7. FORMULAIRE DE CONTACT
-   Démo front-end uniquement : aucune donnée n'est envoyée nulle part.
-   Branche ton propre endpoint (Formspree, backend, etc.) ici si besoin.
--------------------------------------------------------------------------- */
-const contactForm = document.getElementById("contact-form");
-const formNote = document.getElementById("form-note");
-
-if (contactForm && formNote) {
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    formNote.textContent = "Message prêt à partir — branche ce formulaire à ton service d'envoi préféré.";
-    contactForm.reset();
-  });
-}
