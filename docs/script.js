@@ -19,6 +19,203 @@ const CONFIG = {
 };
 
 /* --------------------------------------------------------------------------
+   BARRE DE DÉFILEMENT PERSONNALISÉE
+-------------------------------------------------------------------------- */
+const customScrollbarQuery = window.matchMedia("(min-width: 761px)");
+const initialDevicePixelRatio = window.devicePixelRatio || 1;
+let customScrollbar = null;
+let customScrollbarThumb = null;
+let customScrollbarFrame = 0;
+let scrollbarDragPointerId = null;
+let scrollbarDragOffset = 0;
+let previousScrollBehavior = "";
+
+const updateCustomScrollbarThickness = () => {
+  if (!customScrollbar) return;
+
+  const currentDevicePixelRatio = window.devicePixelRatio || initialDevicePixelRatio;
+  const zoomCompensation = initialDevicePixelRatio / currentDevicePixelRatio;
+  customScrollbar.style.setProperty("--custom-scrollbar-track-width", `${12 * zoomCompensation}px`);
+  customScrollbar.style.setProperty("--custom-scrollbar-thumb-width", `${8 * zoomCompensation}px`);
+  customScrollbar.style.setProperty("--custom-scrollbar-thumb-left", `${2 * zoomCompensation}px`);
+};
+
+const updateCustomScrollbar = () => {
+  customScrollbarFrame = 0;
+  if (!customScrollbar || !customScrollbarThumb) return;
+
+  const viewportHeight = window.innerHeight;
+  const documentHeight = Math.max(
+    document.documentElement.scrollHeight,
+    document.body.scrollHeight
+  );
+  const scrollRange = documentHeight - viewportHeight;
+  const thumbHeight = Math.min(
+    viewportHeight,
+    Math.max(36, viewportHeight * viewportHeight / documentHeight)
+  );
+  const thumbRange = viewportHeight - thumbHeight;
+
+  customScrollbar.hidden = scrollRange <= 0;
+  customScrollbar.setAttribute("aria-valuemax", String(Math.ceil(scrollRange)));
+  customScrollbar.setAttribute("aria-valuenow", String(Math.round(window.scrollY)));
+  customScrollbarThumb.style.height = `${thumbHeight}px`;
+  customScrollbarThumb.style.transform = `translateY(${
+    scrollRange > 0 ? window.scrollY / scrollRange * thumbRange : 0
+  }px)`;
+};
+
+const scheduleCustomScrollbarUpdate = () => {
+  if (!customScrollbarFrame) {
+    customScrollbarFrame = window.requestAnimationFrame(updateCustomScrollbar);
+  }
+};
+
+const setCustomScrollbarEnabled = () => {
+  if (customScrollbarQuery.matches) {
+    if (customScrollbar) {
+      updateCustomScrollbarThickness();
+      scheduleCustomScrollbarUpdate();
+      return;
+    }
+
+    customScrollbar = document.createElement("div");
+    customScrollbar.className = "custom-scrollbar";
+    customScrollbar.setAttribute("role", "scrollbar");
+    customScrollbar.setAttribute("aria-label", "Défilement de la page");
+    customScrollbar.setAttribute("aria-orientation", "vertical");
+    customScrollbar.setAttribute("aria-valuemin", "0");
+    customScrollbar.tabIndex = 0;
+    customScrollbarThumb = document.createElement("div");
+    customScrollbarThumb.className = "custom-scrollbar-thumb";
+    customScrollbar.append(customScrollbarThumb);
+    document.body.append(customScrollbar);
+    document.documentElement.classList.add("custom-scrollbar-active");
+    updateCustomScrollbarThickness();
+
+    const scrollFromPointer = (clientY) => {
+      const viewportHeight = window.innerHeight;
+      const documentHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+      );
+      const scrollRange = documentHeight - viewportHeight;
+      const thumbRange = viewportHeight - customScrollbarThumb.offsetHeight;
+      const thumbTop = Math.max(
+        0,
+        Math.min(thumbRange, clientY - scrollbarDragOffset)
+      );
+      if (thumbRange > 0) {
+        window.scrollTo(0, thumbTop / thumbRange * scrollRange);
+      }
+    };
+
+    customScrollbar.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0) return;
+      event.preventDefault();
+      scrollbarDragPointerId = event.pointerId;
+      scrollbarDragOffset = event.target === customScrollbarThumb
+        ? event.clientY - customScrollbarThumb.getBoundingClientRect().top
+        : customScrollbarThumb.offsetHeight / 2;
+      previousScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      customScrollbar.classList.add("is-dragging");
+      document.documentElement.classList.add("is-scrollbar-dragging");
+      customScrollbar.setPointerCapture(event.pointerId);
+      if (event.target !== customScrollbarThumb) {
+        scrollFromPointer(event.clientY);
+      }
+    });
+
+    customScrollbar.addEventListener("pointermove", (event) => {
+      if (event.pointerId !== scrollbarDragPointerId) return;
+      scrollFromPointer(event.clientY);
+    });
+
+    const finishScrollbarDrag = (event) => {
+      if (event.pointerId !== scrollbarDragPointerId) return;
+      scrollbarDragPointerId = null;
+      customScrollbar.classList.remove("is-dragging");
+      document.documentElement.classList.remove("is-scrollbar-dragging");
+      document.documentElement.style.scrollBehavior = previousScrollBehavior;
+    };
+    customScrollbar.addEventListener("pointerup", finishScrollbarDrag);
+    customScrollbar.addEventListener("pointercancel", finishScrollbarDrag);
+    customScrollbar.addEventListener("keydown", (event) => {
+      const pageStep = window.innerHeight * 0.9;
+      let targetY;
+      switch (event.key) {
+        case "ArrowDown": targetY = window.scrollY + 40; break;
+        case "ArrowUp": targetY = window.scrollY - 40; break;
+        case "PageDown": targetY = window.scrollY + pageStep; break;
+        case "PageUp": targetY = window.scrollY - pageStep; break;
+        case "Home": targetY = 0; break;
+        case "End": targetY = document.documentElement.scrollHeight; break;
+        default: return;
+      }
+      event.preventDefault();
+      window.scrollTo(0, targetY);
+    });
+  } else if (customScrollbar) {
+    customScrollbar.remove();
+    customScrollbar = null;
+    customScrollbarThumb = null;
+    document.documentElement.classList.remove("custom-scrollbar-active");
+  }
+
+  scheduleCustomScrollbarUpdate();
+};
+
+window.addEventListener("scroll", scheduleCustomScrollbarUpdate, { passive: true });
+window.addEventListener("resize", setCustomScrollbarEnabled);
+customScrollbarQuery.addEventListener("change", setCustomScrollbarEnabled);
+window.addEventListener("load", scheduleCustomScrollbarUpdate);
+if ("ResizeObserver" in window) {
+  const scrollbarResizeObserver = new ResizeObserver(scheduleCustomScrollbarUpdate);
+  scrollbarResizeObserver.observe(document.documentElement);
+  scrollbarResizeObserver.observe(document.body);
+}
+setCustomScrollbarEnabled();
+
+/* --------------------------------------------------------------------------
+   RETOUR EN HAUT ET PROGRESSION DE DÉFILEMENT
+-------------------------------------------------------------------------- */
+const backToTopButton = document.getElementById("back-to-top");
+const backToTopRing = backToTopButton?.querySelector(".back-to-top-ring");
+const backToTopRingLength = 2 * Math.PI * 21;
+
+const updateBackToTop = () => {
+  if (!backToTopButton || !backToTopRing) return;
+
+  const documentHeight = Math.max(
+    document.documentElement.scrollHeight,
+    document.body.scrollHeight
+  );
+  const scrollRange = Math.max(0, documentHeight - window.innerHeight);
+  const progress = scrollRange > 0
+    ? Math.min(1, Math.max(0, window.scrollY / scrollRange))
+    : 0;
+
+  backToTopRing.style.strokeDashoffset = String(backToTopRingLength * (1 - progress));
+  const isVisible = window.scrollY > 0;
+  backToTopButton.classList.toggle("is-visible", isVisible);
+  backToTopButton.disabled = !isVisible;
+  backToTopButton.setAttribute("aria-hidden", String(!isVisible));
+};
+
+if (backToTopButton) {
+  backToTopButton.addEventListener("click", () => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  });
+
+  window.addEventListener("scroll", updateBackToTop, { passive: true });
+  window.addEventListener("resize", updateBackToTop);
+  window.addEventListener("load", updateBackToTop);
+  updateBackToTop();
+}
+
+/* --------------------------------------------------------------------------
    2. MENU MOBILE
 -------------------------------------------------------------------------- */
 const navBurger = document.getElementById("nav-burger");
