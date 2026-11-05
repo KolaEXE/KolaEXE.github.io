@@ -674,18 +674,18 @@ ul{ margin: 0; padding: 0; list-style: none; }
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 22px 20px;
+  padding: 7px 20px;
   border-radius: var(--radius-md);
   border: 3px solid var(--black-soft);
   box-shadow: var(--shadow-hard-sm), inset 0 0 3px #000000;
   
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
 }
 .skill-card--violet{ background: var(--violet-pastel); color: var(--violet-deep); }
 .skill-card--yellow{ background: var(--yellow-pastel); color: #6B4E00; }
-.skill-icon{ font-size: 1.6rem; }
+.skill-icon{ font-size: 2.05rem; margin-top: .4rem}
 
 /* --------------------------------------------------------------------------
    7. PROJECTS
@@ -867,7 +867,7 @@ ul{ margin: 0; padding: 0; list-style: none; }
 .link-card--violet .link-handle{ color: var(--violet-lavender); }
 .link-card--yellow{ background: var(--yellow-vivid); color: var(--black-soft); }
 .link-card--yellow .link-handle{ color: #6B4E00; }
-.link-icon{ font-size: 1.5rem; }
+.link-icon{ font-size: 2.3rem; }
 .link-name{ font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; }
 .link-handle{ font-family: var(--font-mono); font-size: 0.82rem; }
 
